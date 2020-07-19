@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
-
+/// <summary>
+/// The main class which handle entire game processes  
+/// </summary>
 [CreateAssetMenu(fileName = "GameManager", menuName = "Managers/GameManager")]
-public sealed class GameManager : BaseInjectable
+public sealed class GameManager : BaseInjectable, IGlobal
 {
     private UserManager _userManager; 
         
@@ -13,6 +15,4 @@ public sealed class GameManager : BaseInjectable
     }
 
     public User GetCurrentUser() => _currentUser;
-
-
 }

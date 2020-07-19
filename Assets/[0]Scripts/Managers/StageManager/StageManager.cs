@@ -1,18 +1,24 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class StageManager : MonoBehaviour
+using UnityEngine.SceneManagement;
+/// <summary>
+/// Class to handle scene transitions
+/// </summary>
+public class StageManager 
 {
-    // Start is called before the first frame update
-    void Start()
+    /// <summary>
+    /// Method the same as SceneManager.LoadScene() but with ability to adjust InjectBox, clear resources and call garbage collector 
+    /// </summary>
+    /// <param name="stageId"></param>
+    /// <param name="mode"></param>
+    public static void LoadStage(StageID stageId, LoadSceneMode mode = LoadSceneMode.Single)
     {
-        
+        InjectBox.ClearNonGlobalInjectables();
+        SceneManager.LoadScene(stageId.ToString(), mode);
+        Resources.UnloadUnusedAssets();
+        GC.Collect();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

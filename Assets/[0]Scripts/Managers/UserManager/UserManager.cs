@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-
+/// <summary>
+/// Class to control users and user's data
+/// </summary>
 [CreateAssetMenu(fileName = "UserManager", menuName = "Managers/UserManager")]
-
-public class UserManager : BaseInjectable
+public class UserManager : BaseInjectable, IGlobal
 {
     private List<User> _users = new List<User>();
 

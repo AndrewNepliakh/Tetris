@@ -7,7 +7,7 @@ public class MenuPopup : BasePopup
 {
    public void OnClickNewGameButton()
    {
-      SceneManager.LoadScene("Level");
+      StageManager.LoadStage(StageID.Level);
    }
    
    public void OnClickContinueButton()

@@ -7,7 +7,8 @@ using UnityEngine;
 
 
 /// <summary>
-/// Class to contain and maintain injectables
+/// Class to contain and maintain injectables.
+/// Injectables are Scriptable Objects that represent managers and are stored in a dictionary to avoid singletons.
 /// </summary>
 public class InjectBox : Singleton<InjectBox>
 {
@@ -74,6 +75,17 @@ public class InjectBox : Singleton<InjectBox>
             {
                 ((IDisable) injectable).LocalDisable();
             }
+        }
+    }
+
+    public static void ClearNonGlobalInjectables()
+    {
+        var injectablesList = Instance._injectables.Values.ToList();
+        
+        foreach (var injectable in injectablesList)
+        {
+            if (injectable is IGlobal) continue;
+            Instance._injectables.Remove(injectable.GetType());
         }
     }
 }

@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
-
-
+/// <summary>
+/// The Class the application is starts from
+/// </summary>
 public class GameEnterPoint : MonoBehaviour
 {
     [SerializeField] private GameManager _gameManager;
@@ -15,7 +16,6 @@ public class GameEnterPoint : MonoBehaviour
     private void Start()
     {
         _gameManager.Initialize();
-        InjectBox.InitializeStartInjectables();
-        SceneManager.LoadScene("Menu");
+        StageManager.LoadStage(StageID.Menu);
     }
 }
