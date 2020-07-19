@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f520d6f75af3a62479c09e917c455943, type: 3}
+  m_Name: LevelData
+  m_EditorClassIdentifier: 
+  levels:
+  - playerObstacleData: {fileID: 11400000, guid: 782a7df11f605844f98864aaefe95ce3,
+      type: 2}
+    oppositeObstacleData: {fileID: 11400000, guid: 1e916209c7826474cbe7b6560a216049,
+      type: 2}
+  - playerObstacleData: {fileID: 11400000, guid: 7d8266d1da97f1c45b0740c382c09ff9,
+      type: 2}
+    oppositeObstacleData: {fileID: 11400000, guid: 48caf280335f9f94abee2c1c3f854fb9,
+      type: 2}
+  - playerObstacleData: {fileID: 11400000, guid: 653e70ee123db7449a9990a922b7204f,
+      type: 2}
+    oppositeObstacleData: {fileID: 11400000, guid: f1c817ce1b99da64e837269377d67a65,
+      type: 2}
+  - playerObstacleData: {fileID: 11400000, guid: b08bd91b35bd2bb4ba90f5df1e3a0d59,
+      type: 2}
+    oppositeObstacleData: {fileID: 11400000, guid: b08bd91b35bd2bb4ba90f5df1e3a0d59,
+      type: 2}
+  - playerObstacleData: {fileID: 11400000, guid: eaf66720dfb384e488e7c2382f2a4acb,
+      type: 2}
+    oppositeObstacleData: {fileID: 11400000, guid: 49ad96fc6f49a334bb9c9637f4409023,
+      type: 2}
+  - playerObstacleData: {fileID: 11400000, guid: cd8e9ed884f397a4fbdf29fe79bbf6f8,
+      type: 2}
+    oppositeObstacleData: {fileID: 11400000, guid: d5da194ba074cb84f9c7bd59274a09cd,
+      type: 2}
+  - playerObstacleData: {fileID: 11400000, guid: cf1cb9383cb00a047af571a42ad1bcb4,
+      type: 2}
+    oppositeObstacleData: {fileID: 11400000, guid: 4fba643b73206e24497de9bcd72b622c,
+      type: 2}
+  - playerObstacleData: {fileID: 11400000, guid: 1adc5bce909b18b42962b6bf36b891fd,
+      type: 2}
+    oppositeObstacleData: {fileID: 11400000, guid: 23f9c45171ac0de4d8009f7b8f7ebdff,
+      type: 2}
+  - playerObstacleData: {fileID: 11400000, guid: 957f1514ba2830249863e6a3fde32182,
+      type: 2}
+    oppositeObstacleData: {fileID: 11400000, guid: 5038b4407513333469721ae68505a238,
+      type: 2}
