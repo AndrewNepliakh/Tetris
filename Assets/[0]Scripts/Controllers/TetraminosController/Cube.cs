@@ -4,7 +4,7 @@ using System.ComponentModel;
 using UnityEditor;
 using UnityEngine;
 
-public class Cube : MonoUnit
+public class Cube : MonoBehaviour, IPoolable
 {
    private Renderer _renderer;
 
@@ -13,5 +13,15 @@ public class Cube : MonoUnit
       _renderer = GetComponent<Renderer>();
       _renderer.material.color = color;
       transform.localPosition = position;
+   }
+
+   public void OnActivate(object argument = default)
+   {
+      gameObject.SetActive(true);
+   }
+
+   public void OnDeactivate(object argument = default)
+   {
+      gameObject.SetActive(false);
    }
 }

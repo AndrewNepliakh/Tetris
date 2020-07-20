@@ -7,13 +7,11 @@ public class GameEnterPoint : MonoBehaviour
 {
     [SerializeField] private GameManager _gameManager;
     [SerializeField] private UserManager _userManager;
-    [SerializeField] private UpdateManager _updateManager;
     [SerializeField] private PoolManager _poolManager;
     private void Awake()
     {
         InjectBox.Add(_gameManager);
         InjectBox.Add(_userManager);
-        InjectBox.Add(_updateManager);
         InjectBox.Add(_poolManager);
     }
 
