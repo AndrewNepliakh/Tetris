@@ -1,13 +1,21 @@
 ﻿using System;
 using UnityEngine;
-
-
+/// <summary>
+/// Class that handle all Updates in one place
+/// </summary>
 [CreateAssetMenu(fileName = "UpdateManager", menuName = "Managers/UpdateManager")]
-public class UpdateManager : BaseInjectable, IAwake
+public class UpdateManager : BaseInjectable, IAwake, IGlobal
 {
     public void OnAwake()
     {
-        GameObject.Find("[EnterPoint]").GetComponent<UpdateManagerMonoBehaviour>().SetUp(this);
+        try
+        {
+            GameObject.Find("[Singleton: INJECTBOX]").GetComponent<UpdateManagerMonobehaviour>().SetUp(this);
+        }
+        catch (NullReferenceException e)
+        {
+            Debug.LogError("UpdateManagerMonoBehaviour doesn't exist");
+        }
     }
 
     public void Update()

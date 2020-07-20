@@ -8,14 +8,16 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "LevelManager", menuName = "Managers/LevelManager")]
 public class LevelManager : BaseInjectable, IAwake, IStart, IDisable
 {
+    private TetraminoController _tetraminoController;
+    
     public void OnAwake()
     {
-       
+       _tetraminoController = new TetraminoController();
     }
 
     public void OnStart()
     {
-       
+        _tetraminoController.SpawnTetramino();
     }
 
     public void LocalDisable()

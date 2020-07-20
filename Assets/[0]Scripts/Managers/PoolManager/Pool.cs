@@ -30,6 +30,13 @@ public class Pool : MonoBehaviour
 
         return go.GetComponent<T>();
     }
+    
+    public T Spawn<T>(Transform parent) where T : MonoBehaviour, IPoolable
+    {
+        GameObject go = new GameObject(typeof(T).ToString());
+        go.transform.SetParent(parent);
+        return go.AddComponent<T>();
+    }
 
     public T Activate<T>(Vector3 localPosition = default, Vector3 localRotation = default)
         where T : MonoBehaviour, IPoolable

@@ -28,6 +28,10 @@ public class InjectBox : Singleton<InjectBox>
         }
 #endif
 
+        var o = Instance.gameObject;
+        o.AddComponent<UpdateManagerMonobehaviour>();
+        o.AddComponent<GameManagerMonoBehaviour>();
+
         var injectablesList = Instance._injectables.Values.ToList();
 
         foreach (var injectable in injectablesList)

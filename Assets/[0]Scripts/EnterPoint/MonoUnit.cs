@@ -4,25 +4,20 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class MonoUnit : MonoBehaviour, IDisable
+public class MonoUnit : MonoBehaviour, IPoolable
 {
     public static readonly List<MonoUnit> AllUpdates = new List<MonoUnit>();
 
-    private void OnEnable()
-    {
-        AllUpdates.Add(this);
-        OnTurnOn();
-    }
-
-    private void OnDisable()
-    {
-        AllUpdates.Remove(this);
-        OnTurnOff();
-    }
-    
     public void UnitStart()
     {
+        AllUpdates.Add(this);
         OnStart();
+    }
+    
+    public void OnActivate(object argument = default)
+    {
+        gameObject.SetActive(true);
+        AllUpdates.Add(this);
     }
 
     public void UnitUpdate()
@@ -35,29 +30,15 @@ public class MonoUnit : MonoBehaviour, IDisable
         OnFixedUpdate();
     }
 
-    protected virtual void OnStart()
+    protected virtual void OnStart(){}
+    protected virtual void OnUpdate(){}
+    protected virtual void OnFixedUpdate(){}
+
+    public void OnDeactivate(object argument = default)
     {
+        AllUpdates.Remove(this);
+        gameObject.SetActive(false);
     }
 
-    protected virtual void OnUpdate()
-    {
-    }
-
-    protected virtual void OnFixedUpdate()
-    {
-        
-    }
-
-    protected virtual void OnTurnOn()
-    {
-    }
-
-    protected virtual void OnTurnOff()
-    {
-    }
-
-    public void LocalDisable()
-    {
-        OnTurnOff();
-    }
+    
 }

@@ -131,8 +131,9 @@ GameObject:
   m_Component:
   - component: {fileID: 294958889}
   - component: {fileID: 294958890}
+  - component: {fileID: 294958891}
   m_Layer: 0
-  m_Name: GameEnterPoint
+  m_Name: '[EnterPoint]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -166,3 +167,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _gameManager: {fileID: 11400000, guid: 9529946a6d48c254198c71caea59bafe, type: 2}
   _userManager: {fileID: 11400000, guid: a87a865b15e92c449b485a2fba467a15, type: 2}
+  _updateManager: {fileID: 11400000, guid: 67bb52e5b6e1f0843b23ad9e1bc6263c, type: 2}
+  _poolManager: {fileID: 11400000, guid: 8cb5a7cf75f2ef448af0e568e85b3ccc, type: 2}
+--- !u!114 &294958891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 294958888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ce77991640b1464ebcaa3afd5607a7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

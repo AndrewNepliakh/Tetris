@@ -215,7 +215,7 @@ GameObject:
   - component: {fileID: 445321708}
   - component: {fileID: 445321707}
   m_Layer: 0
-  m_Name: '[SceneEnterPoint]'
+  m_Name: '[EnterPoint]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -236,7 +236,6 @@ MonoBehaviour:
   Injectables:
   - {fileID: 11400000, guid: 7f83229a22241164784e91db037a8dd6, type: 2}
   - {fileID: 11400000, guid: 455fe4523fad92d4fb8e3b898e255cb6, type: 2}
-  - {fileID: 11400000, guid: 8cb5a7cf75f2ef448af0e568e85b3ccc, type: 2}
 --- !u!4 &445321708
 Transform:
   m_ObjectHideFlags: 0

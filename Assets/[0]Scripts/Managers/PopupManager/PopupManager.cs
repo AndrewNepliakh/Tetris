@@ -59,7 +59,7 @@ public class PopupManager : BaseInjectable, IAwake
         else
         {
             var popupPrefab = Resources.Load<GameObject>("Prefabs/UI/" + typeof(T));
-            var newPopup = _poolManager.Draw<T>(popupPrefab, _uiParent);
+            var newPopup = _poolManager.GetOrCreate<T>(popupPrefab, _uiParent);
             newPopup.Show(obj);
             _allPopups.Add(newPopup);
             return newPopup;

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "PoolManager", menuName = "Managers/PoolManager")]
-public class PoolManager : BaseInjectable
+public class PoolManager : BaseInjectable, IGlobal
 {
     private static Dictionary<Type,Pool> _pools = new Dictionary<Type, Pool>();
     private GameObject _poolsGO;
@@ -32,19 +32,24 @@ public class PoolManager : BaseInjectable
         return null;
     }
 
-    public T Draw<T>(Vector3 localPosition = default, Vector3 localRotation = default) where T : MonoBehaviour, IPoolable
+    public T GetOrCreate<T>( Transform parent, Vector3 localPosition = default, Vector3 localRotation = default) where T : MonoBehaviour, IPoolable
     {
+        AddPool(typeof(T));
+        
+        Pool pool = GetPool(typeof(T));
+        var poolCount = pool.GetCount();
+        if(poolCount == 0) return pool.Spawn<T>(parent);
         return GetPool(typeof(T)).Activate<T>(localPosition, localRotation);
     }
     
-    public T Draw<T>(GameObject prefab, Transform parent, Vector3 localPosition = default, Vector3 localRotation = default, int poolSize = 0) where T : MonoBehaviour, IPoolable
+    public T GetOrCreate<T>(GameObject prefab, Transform parent, Vector3 localPosition = default, Vector3 localRotation = default, int poolSize = 0) where T : MonoBehaviour, IPoolable
     {
         AddPool(typeof(T), poolSize);
         
         Pool pool = GetPool(typeof(T));
         var poolCount = pool.GetCount();
         if(poolCount == 0) return pool.Spawn<T>(prefab, parent, localPosition, localRotation);
-        return Draw<T>(localPosition, localRotation);
+        return GetPool(typeof(T)).Activate<T>(localPosition, localRotation);
     }
 
     public void Release<T>(T poolable) where T : MonoBehaviour, IPoolable

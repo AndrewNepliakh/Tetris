@@ -2,8 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class UpdateManagerMonoBehaviour : MonoBehaviour
+/// <summary>
+/// Class that provides MonoBehaviour Update methods to UpdateManager
+/// </summary>
+public class UpdateManagerMonobehaviour : MonoBehaviour
 {
 
     private UpdateManager _updateManager;
@@ -15,11 +17,11 @@ public class UpdateManagerMonoBehaviour : MonoBehaviour
 
     public void Update()
     {
-        _updateManager.Update();
+        _updateManager?.Update();
     }
 
     public void FixedUpdate()
     {
-        _updateManager.FixedUpdate();
+        _updateManager?.FixedUpdate();
     }
 }
