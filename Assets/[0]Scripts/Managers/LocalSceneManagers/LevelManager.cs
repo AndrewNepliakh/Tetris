@@ -18,14 +18,21 @@ public class LevelManager : BaseInjectable, IAwake, IStart, IDisable
         _gameManager = InjectBox.Get<GameManager>();
         _poolManager = InjectBox.Get<PoolManager>();
         _popupManager = InjectBox.Get<PopupManager>();
-        _poolManager.PreLoad<Cube>((int)(TetraminoController.Width * TetraminoController.Height));
+        _poolManager.PreLoad<Cube>(TetraminoController.Width * TetraminoController.Height);
        _tetraminoController = new TetraminoController();
+       
+       EventManager.Subscribe<OnGameOverEvent>(OnGameOver);
     }
     
     public void OnStart()
     {
         _popupManager.ShowPopup<LevelPopup>(_gameManager.GetCurrentUser().Scores);
         _tetraminoController.SpawnTetramino();
+    }
+    
+    private void OnGameOver(OnGameOverEvent obj)
+    {
+        TetraminoController.IsGameOver = true;
     }
 
     public void LocalDisable()
