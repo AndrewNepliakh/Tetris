@@ -50,10 +50,10 @@ public class Pool : MonoBehaviour
         return poolable;
     }
 
-    public void Deactivate<T>(T obj) where T : MonoBehaviour, IPoolable
+    public void Deactivate<T>(T obj, object args = default) where T : MonoBehaviour, IPoolable
     {
         _pool.Enqueue(obj);
-        obj.OnDeactivate();
+        obj.OnDeactivate(args);
     }
 
     public int GetCount()

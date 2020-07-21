@@ -44,6 +44,7 @@ public class TetraminoMovementHandler
             {
                 _tetramino.transform.position -= Vector3.down;
                 _tetramino.enabled = false;
+                EventManager.TriggerEvent(new OnTetraminoFellEvent {Tetramino = _tetramino});
             }
             
             _previousTime = Time.time;
@@ -68,7 +69,7 @@ public class TetraminoMovementHandler
             var roundedX = (int)position.x;
             var roundedY = (int)position.y;
 
-            if (roundedX < 0 || roundedX >= WIDTH || roundedY < 0 || roundedY >= HEIGHT) return true;
+            if (roundedX < 0 || roundedX >= WIDTH || roundedY < 0) return true;
         }
 
         return false;

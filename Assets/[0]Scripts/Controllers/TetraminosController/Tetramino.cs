@@ -8,7 +8,7 @@ public class Tetramino : MonoBehaviour, IPoolable
 {
     private Vector3 _rotationPoint;
     private TetraminoMovementHandler _movementHandler;
-    
+
     public void Initialize(Vector3 rotationPoint)
     {
         _movementHandler = new TetraminoMovementHandler(this, _rotationPoint);
@@ -25,10 +25,18 @@ public class Tetramino : MonoBehaviour, IPoolable
     public void OnActivate(object argument = default)
     {
        gameObject.SetActive(true);
+       enabled = true;
     }
 
     public void OnDeactivate(object argument = default)
     {
+        for (int i = transform.childCount -1; i >= 0 ; i--)
+        {
+            transform.GetChild(i).SetParent((Transform)argument);
+        }
+        
         gameObject.SetActive(false);
     }
+    
+    
 }
