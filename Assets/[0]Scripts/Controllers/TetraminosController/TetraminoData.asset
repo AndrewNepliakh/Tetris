@@ -14,30 +14,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TetraminoModels:
   - Id: 0
+    icon: {fileID: 21300000, guid: 7ef39579e1b694e42b38d4a14a1f79b4, type: 3}
     positionMatrix:
     - {x: 0, y: 0, z: 0}
     - {x: 1, y: 0, z: 0}
     - {x: 2, y: 0, z: 0}
     - {x: 3, y: 0, z: 0}
     rotationPoint: {x: 1.5, y: -0.5, z: 0}
-    color: {r: 0.051886797, g: 1, b: 0.7516419, a: 1}
+    color: {r: 0.33490568, g: 1, b: 0.96904284, a: 1}
   - Id: 1
+    icon: {fileID: 21300000, guid: ad209e97d3fb7e4419fb46703fa531fc, type: 3}
     positionMatrix:
     - {x: 0, y: 0, z: 0}
     - {x: 1, y: 0, z: 0}
     - {x: 2, y: 0, z: 0}
     - {x: 2, y: 1, z: 0}
     rotationPoint: {x: 1, y: 0, z: 0}
-    color: {r: 1, g: 0, b: 0, a: 1}
+    color: {r: 1, g: 0.05490196, b: 0, a: 1}
   - Id: 2
+    icon: {fileID: 21300000, guid: b7b6cf8afc307b148a75eb976f4a7531, type: 3}
     positionMatrix:
     - {x: 0, y: 0, z: 0}
     - {x: 1, y: 0, z: 0}
     - {x: 2, y: 0, z: 0}
     - {x: 0, y: 1, z: 0}
     rotationPoint: {x: 1, y: 0, z: 0}
-    color: {r: 0, g: 0.21464825, b: 1, a: 1}
+    color: {r: 0, g: 0.40378928, b: 1, a: 1}
   - Id: 3
+    icon: {fileID: 21300000, guid: 44268f1e2f0ebf040bbfc8de67855248, type: 3}
     positionMatrix:
     - {x: 0, y: 0, z: 0}
     - {x: 1, y: 0, z: 0}
@@ -46,6 +50,7 @@ MonoBehaviour:
     rotationPoint: {x: 0.5, y: 0.5, z: 0}
     color: {r: 0.95043623, g: 1, b: 0, a: 1}
   - Id: 4
+    icon: {fileID: 21300000, guid: 6a2e02cb32f11b94c99abccae1973e2e, type: 3}
     positionMatrix:
     - {x: 0, y: 0, z: 0}
     - {x: 1, y: 0, z: 0}
@@ -54,14 +59,16 @@ MonoBehaviour:
     rotationPoint: {x: 1, y: 0, z: 0}
     color: {r: 0, g: 1, b: 0, a: 1}
   - Id: 5
+    icon: {fileID: 21300000, guid: 5deb38364ec89d0428ab2243f1d14bf8, type: 3}
     positionMatrix:
     - {x: 0, y: 1, z: 0}
     - {x: 1, y: 1, z: 0}
     - {x: 1, y: 0, z: 0}
     - {x: 2, y: 0, z: 0}
     rotationPoint: {x: 1, y: 0, z: 0}
-    color: {r: 1, g: 0.35030997, b: 0, a: 1}
+    color: {r: 1, g: 0.6458118, b: 0, a: 1}
   - Id: 6
+    icon: {fileID: 21300000, guid: ff3adc9a7d36ac943ade3c7e430ef60b, type: 3}
     positionMatrix:
     - {x: 0, y: 0, z: 0}
     - {x: 1, y: 0, z: 0}

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum TetraminoID
 {
@@ -18,6 +19,7 @@ public enum TetraminoID
 public class TetraminoModel
 {
     public TetraminoID Id;
+    public Sprite icon;
     public Vector3[] positionMatrix;
     public Vector3 rotationPoint;
     public Color color;
@@ -42,6 +44,11 @@ public class TetraminoData : BaseInjectable
     public Vector3 GetRotationPoint(TetraminoID id)
     {
         return TetraminoModels.Find(model => model.Id == id).rotationPoint;
+    }
+    
+    public Sprite GetIcon(TetraminoID id)
+    {
+        return TetraminoModels.Find(model => model.Id == id).icon;
     }
 }
 

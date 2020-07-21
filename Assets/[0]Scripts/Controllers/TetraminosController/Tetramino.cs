@@ -6,13 +6,18 @@ using UnityEngine;
 
 public class Tetramino : MonoBehaviour, IPoolable
 {
-    private Vector3 _rotationPoint;
+
     private TetraminoMovementHandler _movementHandler;
 
     public void Initialize(Vector3 rotationPoint)
     {
-        _movementHandler = new TetraminoMovementHandler(this, _rotationPoint);
-        _rotationPoint = rotationPoint;
+        _movementHandler = new TetraminoMovementHandler(this, rotationPoint);
+    }
+    
+    public void OnActivate(object argument = default)
+    {
+        gameObject.SetActive(true);
+        enabled = true;
     }
 
     private void Update()
@@ -21,18 +26,17 @@ public class Tetramino : MonoBehaviour, IPoolable
         _movementHandler.Fall();
         _movementHandler.Rotate();
     }
-
-    public void OnActivate(object argument = default)
-    {
-       gameObject.SetActive(true);
-       enabled = true;
-    }
-
+    
     public void OnDeactivate(object argument = default)
     {
+        var controller = (TetraminoController) argument;
+        enabled = false;
+        
         for (int i = transform.childCount -1; i >= 0 ; i--)
         {
-            transform.GetChild(i).SetParent((Transform)argument);
+            var child = transform.GetChild(i).GetComponent<Cube>();
+            controller.SetGrid(child);
+            child.transform.SetParent(controller.CubeParent);
         }
         
         gameObject.SetActive(false);

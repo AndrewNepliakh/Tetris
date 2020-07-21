@@ -23,28 +23,24 @@ public class TetraminoBuilder
         _tetraminoData = InjectBox.Get<TetraminoData>();
     }
 
-    public Tetramino BuildTetramino()
+    public Tetramino BuildTetramino(TetraminoID id)
     {
-        var tetraminoId = GetRandomTetraminoID();
+        var tetraminoId = id;
         var rotationPoint = _tetraminoData.GetRotationPoint(tetraminoId);
         
         var tetramino = _poolManager.GetOrCreate<Tetramino>(_parentChest);
+        tetramino.transform.SetParent(_parentChest);
         tetramino.Initialize(rotationPoint);
 
         for (int i = 0; i < CUBES_PER_TETRAMINO; i++)
         {
             var cube = _poolManager.GetOrCreate<Cube>(_cubePrefab, tetramino.transform);
+            cube.transform.SetParent(tetramino.transform);
             var color = _tetraminoData.GetColor(tetraminoId);
             var position = _tetraminoData.GetMatrix(tetraminoId)[i];
             cube.Initialize(position,color);
         }
 
         return tetramino;
-    }
-
-    private TetraminoID GetRandomTetraminoID()
-    {
-        var count = Enum.GetNames(typeof(TetraminoID)).Length;
-        return (TetraminoID) Random.Range(0, count - 1);
     }
 }

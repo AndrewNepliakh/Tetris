@@ -43,7 +43,6 @@ public class TetraminoMovementHandler
             if (IsMovementConstrained())
             {
                 _tetramino.transform.position -= Vector3.down;
-                _tetramino.enabled = false;
                 EventManager.TriggerEvent(new OnTetraminoFellEvent {Tetramino = _tetramino});
             }
             
@@ -66,12 +65,13 @@ public class TetraminoMovementHandler
         foreach (Transform child in _tetramino.transform)
         {
             var position = child.transform.position;
-            var roundedX = (int)position.x;
-            var roundedY = (int)position.y;
+            var roundedX = Mathf.RoundToInt(position.x);
+            var roundedY = Mathf.RoundToInt(position.y);
 
             if (roundedX < 0 || roundedX >= WIDTH || roundedY < 0) return true;
-        }
 
+            if (TetraminoController.Grid[roundedX, roundedY]) return true;
+        }
         return false;
     }
 

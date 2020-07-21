@@ -16,6 +16,8 @@ public class StageManager
     public static void LoadStage(StageID stageId, LoadSceneMode mode = LoadSceneMode.Single)
     {
         InjectBox.ClearNonGlobalInjectables();
+        EventManager.RemoveAllEvents();
+        InjectBox.Get<PoolManager>().ClearPools();
         SceneManager.LoadScene(stageId.ToString(), mode);
         Resources.UnloadUnusedAssets();
         GC.Collect();

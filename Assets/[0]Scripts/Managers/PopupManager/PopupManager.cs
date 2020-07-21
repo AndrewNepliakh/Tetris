@@ -18,7 +18,7 @@ public class PopupManager : BaseInjectable, IAwake
     {
         try
         {
-            _uiParent = GameObject.Find("UI").GetComponent<Transform>();
+            _uiParent = GameObject.Find("UI_Canvas").GetComponent<Transform>();
         }
         catch(NullReferenceException e)
         {
@@ -26,7 +26,7 @@ public class PopupManager : BaseInjectable, IAwake
             eventSystemGo.AddComponent<EventSystem>();
             eventSystemGo.AddComponent<StandaloneInputModule>();
             
-            var canvasGo = new GameObject("UI");
+            var canvasGo = new GameObject("UI_Canvas");
             var canvas = canvasGo.AddComponent<Canvas>();
             var scaler = canvasGo.AddComponent<CanvasScaler>();
             canvasGo.AddComponent<GraphicRaycaster>();
@@ -43,12 +43,12 @@ public class PopupManager : BaseInjectable, IAwake
     
     public T ShowPopup<T>(object obj = null) where T : BasePopup
     {
-        Pool pool = _poolManager.GetPool(typeof(T));
+        Pool pool = _poolManager.GetPool<T>();
         T popup = null;
 
         if (pool)
             if (pool.GetCount() > 0)
-                popup = _poolManager.GetPool(typeof(T))?.Activate<T>();
+                popup = _poolManager.GetPool<T>()?.Activate<T>();
 
         if (popup)
         {
@@ -72,7 +72,7 @@ public class PopupManager : BaseInjectable, IAwake
 
         if (popup)
         {
-            _poolManager.GetPool(typeof(T))?.Deactivate(popup);
+            _poolManager.GetPool<T>()?.Deactivate(popup);
             popup.Close();
         }
     }
