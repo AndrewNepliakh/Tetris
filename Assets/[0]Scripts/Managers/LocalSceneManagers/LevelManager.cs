@@ -26,6 +26,7 @@ public class LevelManager : BaseInjectable, IAwake, IStart, IDisable
        
        EventManager.Subscribe<OnGameOverEvent>(OnGameOver);
        EventManager.Subscribe<OnRetryLevelEvent>(OnRetryLevel);
+       EventManager.Subscribe<OnMenuEvent>(OnMenu);
     }
 
     public void OnStart()
@@ -43,11 +44,18 @@ public class LevelManager : BaseInjectable, IAwake, IStart, IDisable
     
     private void OnRetryLevel(OnRetryLevelEvent obj)
     {
-        foreach (var cube in FindObjectsOfType<Cube>()) _poolManager.GetPool<Cube>().Deactivate(cube);
-        IsGameOver = false;
         _gameManager.GetCurrentUser().ResetScore();
+        IsGameOver = false;
         _tetraminoController.ClearGrid();
+        foreach (var cube in FindObjectsOfType<Cube>()) _poolManager.GetPool<Cube>().Deactivate(cube);
         _tetraminoController.SpawnTetramino();
+    }
+    
+    private void OnMenu(OnMenuEvent obj)
+    {
+        _gameManager.GetCurrentUser().ResetScore();
+        IsGameOver = false;
+        StageManager.LoadStage(StageID.Menu);
     }
 
     public void LocalDisable()

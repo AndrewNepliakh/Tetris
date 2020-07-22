@@ -71,14 +71,15 @@ public class LevelPopup : BasePopup
 
    public void OnClickMenuButton()
    {
-      StageManager.LoadStage(StageID.Menu);
+      EventManager.TriggerEvent<OnMenuEvent>();
    }
    
    public void OnClickRetryButton()
    {
+      EventManager.TriggerEvent<OnRetryLevelEvent>();
       SetActiveGameOverPanel(false);
       SetActiveBestText();
-      EventManager.TriggerEvent<OnRetryLevelEvent>();
+      UpdateScoresText(_user.Score.ToString());
    }
 
 }
