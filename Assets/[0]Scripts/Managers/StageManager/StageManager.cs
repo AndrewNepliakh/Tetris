@@ -9,18 +9,17 @@ using UnityEngine.SceneManagement;
 public class StageManager 
 {
     /// <summary>
-    /// Method the same as SceneManager.LoadScene() but with ability to adjust InjectBox, clear resources and call garbage collector 
+    /// Method the same as SceneManager.LoadScene() but with ability to adjust InjectBox, clear resources and call garbage collector. 
     /// </summary>
     /// <param name="stageId"></param>
     /// <param name="mode"></param>
     public static void LoadStage(StageID stageId, LoadSceneMode mode = LoadSceneMode.Single)
     {
         InjectBox.ClearNonGlobalInjectables();
-        EventManager.RemoveAllEvents();
         InjectBox.Get<PoolManager>().ClearPools();
+        EventManager.RemoveAllEvents();
         SceneManager.LoadScene(stageId.ToString(), mode);
         Resources.UnloadUnusedAssets();
         GC.Collect();
     }
-
 }

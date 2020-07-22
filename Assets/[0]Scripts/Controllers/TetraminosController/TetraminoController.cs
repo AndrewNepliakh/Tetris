@@ -25,11 +25,9 @@ public class TetraminoController
     public static int Width => WIDTH;
     public static Vector3 SpawnPosition => _spawnPosition;
     public static Cube[,] Grid => _grid;
-    public static bool IsGameOver { get; set; }
-    
+
     public Transform CubeParent => _cubeParent;
-
-
+    
     public TetraminoController()
     {
         _spawner = new TetraminoSpawner();
@@ -46,7 +44,7 @@ public class TetraminoController
 
     public void SpawnTetramino()
     {
-        if(!IsGameOver)_spawner.Spawn();
+        if(!LevelManager.IsGameOver)_spawner.Spawn();
     }
     
     public void SetGrid(Cube cube)
@@ -54,7 +52,12 @@ public class TetraminoController
         var cubePos = cube.transform.position;
         _grid[Mathf.RoundToInt(cubePos.x), Mathf.RoundToInt(cubePos.y)] = cube;
     }
-    
+
+    public void ClearGrid()
+    {
+        _grid = new Cube[WIDTH, HEIGHT + 5];
+    }
+
     private void OnTetraminoFell(OnTetraminoFellEvent obj)
     {
         _poolManager.GetPool<Tetramino>().Deactivate(obj.Tetramino, this);

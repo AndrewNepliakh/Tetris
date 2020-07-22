@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 /// <summary>
 /// Class to handle all processes of level stage
+/// From this class starts Level
 /// </summary>
 
 [CreateAssetMenu(fileName = "LevelManager", menuName = "Managers/LevelManager")]
@@ -13,6 +14,8 @@ public class LevelManager : BaseInjectable, IAwake, IStart, IDisable
     private PopupManager _popupManager;
     private PoolManager _poolManager;
     
+    public static bool IsGameOver { get; set; }
+    
     public void OnAwake()
     {
         _gameManager = InjectBox.Get<GameManager>();
@@ -22,17 +25,29 @@ public class LevelManager : BaseInjectable, IAwake, IStart, IDisable
        _tetraminoController = new TetraminoController();
        
        EventManager.Subscribe<OnGameOverEvent>(OnGameOver);
+       EventManager.Subscribe<OnRetryLevelEvent>(OnRetryLevel);
     }
-    
+
     public void OnStart()
     {
-        _popupManager.ShowPopup<LevelPopup>(_gameManager.GetCurrentUser().Scores);
+        _gameManager.GetCurrentUser().Load();
+        _popupManager.ShowPopup<LevelPopup>(_gameManager.GetCurrentUser().Score);
         _tetraminoController.SpawnTetramino();
     }
     
     private void OnGameOver(OnGameOverEvent obj)
     {
-        TetraminoController.IsGameOver = true;
+        IsGameOver = true;
+        _gameManager.GetCurrentUser().Save();
+    }
+    
+    private void OnRetryLevel(OnRetryLevelEvent obj)
+    {
+        foreach (var cube in FindObjectsOfType<Cube>()) _poolManager.GetPool<Cube>().Deactivate(cube);
+        IsGameOver = false;
+        _gameManager.GetCurrentUser().ResetScore();
+        _tetraminoController.ClearGrid();
+        _tetraminoController.SpawnTetramino();
     }
 
     public void LocalDisable()
