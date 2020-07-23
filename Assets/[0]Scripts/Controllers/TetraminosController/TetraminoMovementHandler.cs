@@ -12,7 +12,6 @@ public class TetraminoMovementHandler
     private readonly float WIDTH = TetraminoController.Width;
 
     private float _previousTime;
-    private float _fallTime = 0.8f;
 
     public TetraminoMovementHandler(Tetramino tetramino, Vector3 rotationPoint)
     {
@@ -37,7 +36,7 @@ public class TetraminoMovementHandler
 
     public void Fall()
     {
-        if (Time.time - _previousTime > (Input.GetKey(KeyCode.DownArrow) ? _fallTime / 10 : _fallTime))
+        if (Time.time - _previousTime > (Input.GetKey(KeyCode.DownArrow) ? LevelManager.Speed / 10 : LevelManager.Speed))
         {
             _tetramino.transform.position += Vector3.down;
             if (IsMovementConstrained())

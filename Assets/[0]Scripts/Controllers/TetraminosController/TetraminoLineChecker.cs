@@ -12,6 +12,7 @@ public class TetraminoLineChecker
             {
                 DeleteLine(i);
                 RowDown(i);
+                EventManager.TriggerEvent<OnCompleteLineEvent>();
             }
         }
     }

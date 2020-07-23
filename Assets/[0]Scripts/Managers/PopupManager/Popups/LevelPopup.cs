@@ -7,24 +7,31 @@ public class LevelPopup : BasePopup
 {
    [SerializeField] private Text _scoresText;
    [SerializeField] private Text _bestText;
+   [SerializeField] private Text _speedText;
    
    [SerializeField] private Image _nextTetraminoImage;
    [SerializeField] private RectTransform _gameOverPanel;
 
    private User _user;
+   private LevelManager _levelManager;
+
+   private int _speed;
 
    protected override void OnShow(object obj = null)
    {
       _user = InjectBox.Get<GameManager>().GetCurrentUser();
+      _levelManager = InjectBox.Get<LevelManager>();
+      _speed = 1;
       
       UpdateScoresText(((int)obj).ToString());
+      UpdateSpeedText(_speed.ToString());
       SetActiveBestText();
       
       EventManager.Subscribe<OnTetraminoSpawnEvent>(OnTetraminoSpawn);
       EventManager.Subscribe<OnScoreGainedEvent>(OnScoreGained);
       EventManager.Subscribe<OnGameOverEvent>(OnGameOver);
+      EventManager.Subscribe<OnIncreasedSpeedEvent>(OnIncreasedSpeed);
    }
-
    private void OnGameOver(OnGameOverEvent obj)
    {
       SetActiveGameOverPanel(true);
@@ -40,6 +47,11 @@ public class LevelPopup : BasePopup
       UpdateNextTetraminoSprite(InjectBox.Get<TetraminoData>().GetIcon(obj.TetraminoId));
    }
    
+   private void OnIncreasedSpeed(OnIncreasedSpeedEvent obj)
+   {
+      UpdateSpeedText((++_speed).ToString());
+   }
+
    private void SetActiveGameOverPanel(bool condition)
    {
       _gameOverPanel.gameObject.SetActive(condition);
@@ -63,7 +75,12 @@ public class LevelPopup : BasePopup
    {
       _bestText.text = "best: " + value;
    }
-   
+
+   public void UpdateSpeedText(string value)
+   {
+      _speedText.text = "speed: " + value;
+   }
+
    public void UpdateNextTetraminoSprite(Sprite sprite)
    {
       _nextTetraminoImage.sprite = sprite;
@@ -74,12 +91,15 @@ public class LevelPopup : BasePopup
       EventManager.TriggerEvent<OnMenuEvent>();
    }
    
+   
    public void OnClickRetryButton()
    {
       EventManager.TriggerEvent<OnRetryLevelEvent>();
       SetActiveGameOverPanel(false);
       SetActiveBestText();
       UpdateScoresText(_user.Score.ToString());
+      _speed = 1;
+      UpdateSpeedText(_speed.ToString());
    }
 
 }
